@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from ".";
+import { sequelize, Sequelize } from ".";
 
 interface CourseAttributes {
 	id: string;
@@ -8,6 +8,7 @@ interface CourseAttributes {
 	endTIme: string;
 	lecturer: string;
 	asstLecturer: string;
+	weekId: string;
 }
 
 interface CourseCreationAttributes extends Optional<CourseAttributes, "id"> {}
@@ -24,9 +25,11 @@ const Course = sequelize.define<CourseInstance>("Course", {
 		allowNull: false,
 		autoIncrement: false,
 		primaryKey: true,
-		type: DataTypes.INTEGER,
+		type: DataTypes.UUID,
 		unique: true,
-		validate: { isNull: true },
+		defaultValue: Sequelize.literal(
+			"uuid_in(md5(random()::text || clock_timestamp()::text)::cstring)",
+		),
 	},
 	title: {
 		allowNull: false,
@@ -47,6 +50,10 @@ const Course = sequelize.define<CourseInstance>("Course", {
 	asstLecturer: {
 		allowNull: false,
 		type: DataTypes.CHAR(255),
+	},
+	weekId: {
+		allowNull: false,
+		type: DataTypes.INTEGER,
 	},
 });
 

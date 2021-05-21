@@ -1,9 +1,10 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from ".";
+import { sequelize, Sequelize } from ".";
 
 interface CoordinatorAttributes {
 	id: string;
 	name: string;
+	batchId: string;
 }
 
 interface CoordinatorCreationAttributes
@@ -21,12 +22,19 @@ const Coordinator = sequelize.define<CoordinatorInstance>("Coordinator", {
 		allowNull: false,
 		autoIncrement: false,
 		primaryKey: true,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 		unique: true,
+		defaultValue: Sequelize.literal(
+			"uuid_in(md5(random()::text || clock_timestamp()::text)::cstring)",
+		),
 	},
 	name: {
 		allowNull: false,
 		type: DataTypes.CHAR(255),
+	},
+	batchId: {
+		allowNull: false,
+		type: DataTypes.UUID,
 	},
 });
 

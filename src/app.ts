@@ -4,12 +4,13 @@ import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-
-import { sequelize } from "./models";
+import models from "./models/associations";
 
 dotenv.config();
+models();
 
 // import routes
+import students from "./routes/students";
 
 export const app = express();
 
@@ -21,3 +22,4 @@ app.use(cors());
 app.use(helmet());
 
 // mount routes
+app.use("/v1/students", students);

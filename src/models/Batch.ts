@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from ".";
+import { sequelize, Sequelize } from ".";
 
 interface BatchAttributes {
 	id: string;
@@ -8,6 +8,7 @@ interface BatchAttributes {
 	endDate: string;
 	frequency: string;
 	coordinatorId: string;
+	studentId: string;
 }
 
 interface BatchCreationAttributes extends Optional<BatchAttributes, "id"> {}
@@ -24,8 +25,11 @@ const Batch = sequelize.define<BatchInstance>("Batch", {
 		allowNull: false,
 		autoIncrement: false,
 		primaryKey: true,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 		unique: true,
+		defaultValue: Sequelize.literal(
+			"uuid_in(md5(random()::text || clock_timestamp()::text)::cstring)",
+		),
 	},
 	name: {
 		allowNull: false,
@@ -45,7 +49,11 @@ const Batch = sequelize.define<BatchInstance>("Batch", {
 	},
 	coordinatorId: {
 		allowNull: false,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
+	},
+	studentId: {
+		allowNull: false,
+		type: DataTypes.UUID,
 	},
 });
 

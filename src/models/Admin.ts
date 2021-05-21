@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from ".";
+import { sequelize, Sequelize } from ".";
 
 interface AdminAttributes {
 	id: string;
@@ -27,8 +27,11 @@ const Admin = sequelize.define<AdminInstance>("Admin", {
 		allowNull: false,
 		autoIncrement: false,
 		primaryKey: true,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 		unique: true,
+		defaultValue: Sequelize.literal(
+			"uuid_in(md5(random()::text || clock_timestamp()::text)::cstring)",
+		),
 	},
 	firstName: {
 		allowNull: false,

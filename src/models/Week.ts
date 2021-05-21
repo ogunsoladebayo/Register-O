@@ -19,7 +19,7 @@ interface WeekInstance
 const Week = sequelize.define<WeekInstance>("Week", {
 	id: {
 		allowNull: false,
-		autoIncrement: false,
+		autoIncrement: true,
 		primaryKey: true,
 		type: DataTypes.INTEGER,
 		unique: true,
@@ -27,11 +27,11 @@ const Week = sequelize.define<WeekInstance>("Week", {
 	},
 	batchId: {
 		allowNull: false,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 	},
 	courseId: {
 		allowNull: false,
-		type: DataTypes.UUIDV4,
+		type: DataTypes.UUID,
 	},
 });
 
