@@ -4,8 +4,8 @@ import { sequelize, Sequelize } from ".";
 interface BatchAttributes {
 	id: string;
 	name: string;
-	startDate: string;
-	endDate: string;
+	startDate: Date;
+	endDate: Date;
 	frequency: string;
 	coordinatorId: string;
 	studentId: string;
@@ -33,7 +33,7 @@ const Batch = sequelize.define<BatchInstance>("Batch", {
 	},
 	name: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	startDate: {
 		allowNull: false,

@@ -33,7 +33,7 @@ const Course = sequelize.define<CourseInstance>("Course", {
 	},
 	title: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	startTime: {
 		allowNull: false,
@@ -45,11 +45,11 @@ const Course = sequelize.define<CourseInstance>("Course", {
 	},
 	lecturer: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	asstLecturer: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	weekId: {
 		allowNull: false,
