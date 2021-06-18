@@ -8,7 +8,7 @@ interface AdminAttributes {
 	id: string;
 	firstName: string;
 	lastName: string;
-	username: string;
+	phoneNo: string;
 	email: string;
 	password: string;
 	resetPasswordToken: string;
@@ -45,7 +45,7 @@ const Admin = sequelize.define<AdminInstance>("Admin", {
 		allowNull: false,
 		type: DataTypes.STRING,
 	},
-	username: {
+	phoneNo: {
 		allowNull: false,
 		type: DataTypes.STRING,
 	},

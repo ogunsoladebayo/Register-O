@@ -11,6 +11,7 @@ dotenv.config();
 models();
 
 // import routes
+import admins from "./routes/admins";
 import auth from "./routes/auth";
 import students from "./routes/students";
 
@@ -25,5 +26,6 @@ app.use(helmet());
 // mount routes
 app.use("/v1/students", students);
 app.use("/v1/auth", auth);
+app.use("/v1/admin", admins);
 
 app.use(errorHandler);

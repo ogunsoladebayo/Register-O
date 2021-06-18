@@ -3,21 +3,21 @@ import asyncHandler from "../middlewares/asyncHandler";
 import Admin from "../models/Admin";
 import ErrorResponse from "../utils/errorResponse";
 
-// @desc      Login user
+// @desc      Login admin
 // @route     POST /v1/auth/login
 // @access    Public
 export const login = asyncHandler(async (req, res, next) => {
-	const { username, password } = req.body;
+	const { email, password } = req.body;
 
 	// Validate email & password
-	if (!username || !password) {
+	if (!email || !password) {
 		return next(
 			new ErrorResponse("Please provide an email and password", 400),
 		);
 	}
 
 	// Check for user
-	const admin = await Admin.findOne({ where: { username } });
+	const admin = await Admin.findOne({ where: { email } });
 
 	if (!admin) {
 		return next(new ErrorResponse("Invalid credentials", 401));

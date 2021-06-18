@@ -52,7 +52,7 @@ const Batch = sequelize.define<BatchInstance>("Batch", {
 		type: DataTypes.UUID,
 	},
 	studentId: {
-		allowNull: false,
+		allowNull: true,
 		type: DataTypes.UUID,
 	},
 });
