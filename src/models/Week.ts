@@ -1,10 +1,10 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from ".";
+import { sequelize, Sequelize } from ".";
 
 interface WeekAttributes {
 	id: number;
 	batchId: string;
-	courseId: string;
+	weekNumber: string;
 }
 
 interface WeekCreationAttributes extends Optional<WeekAttributes, "id"> {}
@@ -19,17 +19,20 @@ interface WeekInstance
 const Week = sequelize.define<WeekInstance>("Week", {
 	id: {
 		allowNull: false,
-		autoIncrement: true,
+		autoIncrement: false,
 		primaryKey: true,
+		type: DataTypes.UUID,
+		unique: true,
+		defaultValue: Sequelize.literal(
+			"uuid_in(md5(random()::text || clock_timestamp()::text)::cstring)",
+		),
+	},
+	weekNumber: {
+		allowNull: false,
 		type: DataTypes.INTEGER,
 		unique: true,
-		validate: { isNull: true },
 	},
 	batchId: {
-		allowNull: false,
-		type: DataTypes.UUID,
-	},
-	courseId: {
 		allowNull: false,
 		type: DataTypes.UUID,
 	},

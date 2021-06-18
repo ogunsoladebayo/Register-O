@@ -30,7 +30,7 @@ const Coordinator = sequelize.define<CoordinatorInstance>("Coordinator", {
 	},
 	name: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	batchId: {
 		allowNull: false,

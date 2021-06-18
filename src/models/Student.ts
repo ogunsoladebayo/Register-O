@@ -34,15 +34,15 @@ const Student = sequelize.define<StudentInstance>("Student", {
 	},
 	firstName: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	lastName: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	middleName: {
 		allowNull: false,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 	},
 	gender: {
 		allowNull: false,
@@ -50,17 +50,17 @@ const Student = sequelize.define<StudentInstance>("Student", {
 	},
 	phoneNumber: {
 		allowNull: false,
-		type: DataTypes.CHAR(20),
+		type: DataTypes.STRING(20),
 	},
 	email: {
 		allowNull: true,
-		type: DataTypes.CHAR(255),
+		type: DataTypes.STRING,
 		unique: false,
 		validate: { isEmail: true },
 	},
 	cloudAbisId: {
 		allowNull: false,
-		type: DataTypes.CHAR(128),
+		type: DataTypes.STRING(128),
 	},
 	batchId: {
 		allowNull: false,

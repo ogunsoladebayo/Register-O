@@ -1,5 +1,4 @@
-import ErrorResponse from "../utils/errorResponse";
-export const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
 	const error = { ...err };
 
 	error.message = err.message;
@@ -24,3 +23,5 @@ export const errorHandler = (err, req, res, next) => {
 		});
 	}
 };
+
+export default errorHandler;
