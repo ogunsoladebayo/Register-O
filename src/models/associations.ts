@@ -13,10 +13,10 @@ const models = async () => {
 		as: "students",
 	});
 
-	Student.belongsTo(Batch, {
-		foreignKey: "batchId",
-		as: "batch",
-	});
+	// Student.belongsTo(Batch, {
+	// 	foreignKey: "batchId",
+	// 	as: "batch",
+	// });
 
 	Batch.hasMany(Week, {
 		sourceKey: "id",
@@ -24,10 +24,10 @@ const models = async () => {
 		as: "weeks",
 	});
 
-	Week.belongsTo(Batch, {
-		foreignKey: "batchId",
-		as: "batch",
-	});
+	// Week.belongsTo(Batch, {
+	// 	foreignKey: "batchId",
+	// 	as: "batch",
+	// });
 
 	Week.hasMany(Course, {
 		sourceKey: "id",
@@ -35,15 +35,15 @@ const models = async () => {
 		as: "courses",
 	});
 
-	Course.belongsTo(Week, {
-		foreignKey: "weekId",
-		as: "week",
-	});
+	// Course.belongsTo(Week, {
+	// 	foreignKey: "weekId",
+	// 	as: "week",
+	// });
 
-	Coordinator.belongsTo(Batch, {
-		foreignKey: "batchId",
-		as: "batch",
-	});
+	// Coordinator.belongsTo(Batch, {
+	// 	foreignKey: "batchId",
+	// 	as: "batch",
+	// });
 
 	Batch.hasMany(Coordinator, {
 		sourceKey: "id",
@@ -52,7 +52,7 @@ const models = async () => {
 	});
 	// await Admin.sync({ force: true });
 	// await sequelize.sync({ force: true });
-	console.log("synced");
+	// console.log("synced");
 };
 
 export default models;
