@@ -6,7 +6,7 @@ const basename = path.basename(__filename);
 const db = {};
 
 const config = {
-	url: process.env.DB_URL,
+	url: process.env.DATABASE_URL,
 	database: process.env.DB_NAME,
 	username: process.env.DB_USER,
 	password: process.env.DB_PASS,

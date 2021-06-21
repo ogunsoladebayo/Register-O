@@ -50,9 +50,9 @@ const models = async () => {
 		foreignKey: "coordinatorId",
 		as: "coordinators",
 	});
-	// await Admin.sync({ force: true });
-	// await sequelize.sync({ force: true });
-	// console.log("synced");
+	await Admin.sync();
+	await sequelize.sync();
+	console.log("synced");
 };
 
 export default models;
